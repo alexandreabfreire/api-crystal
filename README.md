@@ -1,4 +1,4 @@
-## API Rest - Crystal/Kemal - Docker - MySql - Integração entre Api 
+# API Rest - Crystal/Kemal - Docker - MySql - Integração entre Api 
 
 **Api Plano de Viagem**
 
@@ -13,8 +13,11 @@ As localidades estão agrupadas por dimensões e os resultados de consultas são
 O propósito desta Api é demonstrar um código simples para estudos de aplicação da linguagem Crystal em container Docker e também com o uso de http/client pra integração com outra Api hospedada em site sem restrição CORS (Cross-Origin Resource Sharing).
 
 **Exemplo da regra de negócio**
-Para as seguintes paradas de um plano de viagem:
-json
+
+Para as seguintes paradas (localidades) de um plano de viagem:
+
+*json*
+```
 [
   {
     "id": "2",
@@ -60,7 +63,7 @@ json
     "residents": []
   }
 ]
-
+```
 A popularidade de cada localização é:
 - Abadango (ID 2): 1
 - Immortality Field Resort (ID 7): 7
@@ -72,121 +75,182 @@ E a de cada dimensão é:
 - unknown: 4.0
 - Replacement Dimension: 2.0
 
-Portanto o resultado esperado para uma query com **optimize* e sem **expand* é:
-json
+Portanto o resultado esperado para uma query com *optimize* e sem *expand* é:
+*json*
+```
 {
   "id": id do travel plan,
   "travel_stops":[19,9,2,11,7]
 }
+```
 
 ### Instalação para desenvolvimento
 
-**Crystal Language** 
-Instalação do compilador. 
-Acesse https://crystal-lang.org 
-Versão utilizada 1.8.2
+**Crystal Language**
+
+https://crystal-lang.org o compilador utilizado foi na versão 1.8.2
 
 **Docker**
-Instalação do Docker. 
-Acesse https://www.docker.com
-Versão utilizada 24.0.2
+
+https://www.docker.com utilizada a versão 24.0.2
+
+**MySql**
+
+Utilizada a imagem na versão 5.7.42
 
 **Visual Studio Code**
-Instalação do VSCODE. 
-Acesse https://code.visualstudio.com
 
-**MySQl** 
-Utilizado imagem docker na versão 5.7.42
+https://code.visualstudio.com
+
+Instalar as extensões Crystal language e Docker.
 
 ### Executar a Api Plano de Viagem
 
-Para executar a api, na pasta raiz do código, digite **docker-compose up -d**
-Dois containers serão instanciados, a Api e o MySql, uma rede privada também será criada para acesso comunicação entre os containers.
+Para executar a api digite **docker-compose up -d**
+Dois containers serão instanciados, a Api e o MySql, uma rede privada também será criada para comunicação entre os containers.
 
-Para executar os testes, na pasta raiz do código, digite **crystal spec**
-
-**Os dados não são persistidos**
-O volume criado para o banco de dados MySql é temporário, não é realizado o mapeamento do volume do container.
-
-**Uso de ORM (Object-Relational Mapping) e demais técnicas de programação**
-Os métodos de acesso a banco de dados não utilizam ORM e nem tratam aspectos de isolamento de rede ou transações atômicas para integridade de dados ou tratamento de exceções.
+Para executar os testes digite **crystal spec**
 
 **Acesso**
-http://localhost:3000/travel_plans
-http://localhost:3000/travel_plans/{id}
 
-Parâmetros: expand e optimize (boolean)
+*http://localhost:3000/travel_plans*
+
+*http://localhost:3000/travel_plans/{id}*
+
+Parâmetros 
+
+- expand (boolean) define quais serão os dados de retorno, se igual a "true", serão exibidas as propriedades da localidade.
+
+- optimize (boolean) define a ordenação dos dados de retorno, se igual a "true", as localidades serão exibidos em ordem ascendente por média de popularidade da dimensão (calculado) , nome da dimensão (dimension), popularidade da localidade (calculado) e nome da localidade (name).
 
 Implementados os métodos GET, POST, PUT e DELETE
 
 ### Exemplos de uso
 
 **Criar um plano de viagem**
-**Método** 
-POST
+
+**Método**
+
+*POST*
+
 **Url** 
-http://localhost:3000/travel_plans
+
+*http://localhost:3000/travel_plans*
+
 **Headers** 
-Content-Type: application/json
+
+*Content-Type: application/json*
+
 **Body**
+
+```
 {"travel_stops": [2,7,9,11,19]}
+```
+
 **Response status 201**
+
+```
     {
       "id": 1,
       "travel_stops": [2,7,9,11,19]
     }
-
+```
 
 **Consultar um plano de viagem**
+
 **Método**
-GET 
+
+*GET*
+
 **Url**
-http://localhost:3000/travel_plans/1
+
+*http://localhost:3000/travel_plans/1*
+
 **Headers** 
-Content-Type: application/json
+
+*Content-Type: application/json*
+
 **Response status 200**
+
+```
     {
       "id": 1,
       "travel_stops": [2,7,9,11,19]
     }
-
+```
 
 **Consultar um plano de viagem não expandido e otimizado**
+
 **Método**
-GET 
+
+*GET*
+
 **Url**
-http://localhost:3000/travel_plans/1?expand=false&optimize=true
+
+*http://localhost:3000/travel_plans/1?expand=false&optimize=true*
+
 **Headers** 
-Content-Type: application/json
+
+*Content-Type: application/json*
+
 **Response status 200**
+
+```
     {
       "id": 1,
       "travel_stops": [19,9,2,11,7]
     }
-
+```
 
 **Modificar um plano de viagem**
+
 **Método**
-PUT 
+
+*PUT*
+
 **Url**
-http://localhost:3000/travel_plans/1
+
+*http://localhost:3000/travel_plans/1*
+
 **Headers** 
-Content-Type: application/json
+
+*Content-Type: application/json*
+
 **Body**
+
+```
 {"travel_stops": [2,7,9,11]}
+```
+
 **Response status 200**
+
+```
     {
       "id": 1,
       "travel_stops": [2,7,9,11]
     }
-
+```
 
 **Remover um plano de viagem**
+
 **Método**
-DELETE 
+
+*DELETE*
+
 **Url**
-http://localhost:3000/travel_plans/1
+
+*http://localhost:3000/travel_plans/1*
+
 **Headers** 
-Content-Type: application/json
+
+*Content-Type: application/json*
+
 **Response status 204**
-Sem corpo
+
+*Sem corpo*
+
+### Nota
+
+**Os dados do plano de viagem não são persistidos**
+
+O volume criado para o banco de dados MySql é temporário, não é realizado mapeamento de volume do container.
