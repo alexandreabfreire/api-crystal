@@ -87,6 +87,10 @@ Portanto o resultado esperado para uma query com *optimize* e sem *expand* é:
 
 ### Instalação para desenvolvimento
 
+**Ubuntu**
+
+Versão 22.04.2
+
 **Crystal Language**
 
 https://crystal-lang.org 
