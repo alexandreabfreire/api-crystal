@@ -4,7 +4,7 @@
 
 Esta é uma simples Api para registro de planos de viagem no universo Rick and Morty em https://rickandmortyapi.com que é outra Api que possui dados de vários personagens que participam de episódios em diferentes localidades dos quais são assistidos por residentes e que é consumida por esta Api para obtensão das localidades para os planos de viagem. 
 
-Os planos de viagem são armazenados em banco de dados MySql, em container docker, e para cada requisição feita, os dados das localidades são obtidos na Api Rick e Morty e armazenados temporariamente no mesmo banco de dados para realização dos cálculos de popularidade das localidades.
+Os planos de viagem são armazenados em banco de dados MySql, em container docker, e para cada requisição feita, os dados das localidades são obtidos na Api Rick e Morty via consulta Graphql e armazenados temporariamente no mesmo banco de dados para realização dos cálculos de popularidade das localidades.
 
 Uma localidade obtida via Api Rick and Morty representa uma parada no plano de viagem. O objetivo da Api Plano de Viagem é calcular a popularidade das localidades para auxiliar na escolha de planos de viagem. A popularidade de uma localidade é a soma da quantidade de episódios que cada residente daquela localidade assistiu, ou seja, (popularidade = episódios x residentes) para cada localidade.
 

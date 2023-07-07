@@ -6,6 +6,7 @@ require "./models/integration"
 require "./services/travel_plans_data"
 
 module Api
+
   VERSION = "0.1.0" 
  
   include JSON::Serializable
@@ -78,8 +79,7 @@ module Api
     tp = Travel_plans_data.new
     response = tp.travel_plan_put(env.params.url["id"].to_i, body)   
     %(#{response.to_json})
-  end  
-  
+  end 
 end
 
 Kemal.run
