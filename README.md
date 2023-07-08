@@ -1,6 +1,6 @@
 # API REST - Crystal/Kemal - Docker - MySql - Integração entre APIs
 
-**Api Plano de Viagem**
+**API Plano de Viagem**
 
 Esta é uma simples API para criação de planos de viagem no universo Rick and Morty em https://rickandmortyapi.com que é outra API que armazena dados de vários personagens que participam de episódios em diferentes localidades os quais são vistos por residentes. Estes dados são consumidos aqui para exibição dos planos de viagem. 
 
@@ -113,11 +113,11 @@ https://code.visualstudio.com
 
 Instalar as extensões Crystal language e Docker.
 
-### Executar a Api Plano de Viagem
+### Executar a API Plano de Viagem
 
-Para executar a api digite **docker-compose up -d**
+Para executar a API digite **docker-compose up -d**
 
-Dois containers serão instanciados, a Api e o MySql, uma rede privada também será criada para comunicação entre os containers.
+Dois containers serão instanciados, a API e o MySql, uma rede privada também será criada para comunicação entre os containers.
 
 Para executar os testes digite **crystal spec**
 
