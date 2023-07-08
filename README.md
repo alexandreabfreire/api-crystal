@@ -1,4 +1,4 @@
-# API Rest - Crystal/Kemal - Docker - MySql - Integração entre APIs
+# API REST - Crystal/Kemal - Docker - MySql - Integração entre APIs
 
 **Api Plano de Viagem**
 
