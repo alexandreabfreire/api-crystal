@@ -10,7 +10,7 @@ Cada localidade obtida na API Rick and Morty representa uma parada no plano de v
 
 As localidades estão classificadas por dimensões e os resultados *json* das requisições *http* são ordenados de forma ascendente pela média de popularidade da dimensão seguida do nome da dimensão e, para cada dimensão, a popularidade da localidade e o nome dela. O valor de uma dimensão é a média do somatório da popularidade de todas as localidades que pertencem à dimensão.
 
-A API Plano de Viagem apresenta um código simples para estudos de aplicabilidade da linguagem Crystal com Kemal em container Docker para construção de API Rest e também com o uso de http/client pra integração com outra API hospedada em site sem restrição CORS (Cross-Origin Resource Sharing).
+A API Plano de Viagem apresenta um código simples para estudos de aplicabilidade da linguagem Crystal com Kemal em container Docker para construção de API REST e também com o uso de http/client pra integração com outra API hospedada em site sem restrição CORS (Cross-Origin Resource Sharing).
 
 **Exemplo do cálculo da popularidade para ordenação**
 
@@ -261,6 +261,6 @@ Implementados os métodos GET, POST, PUT e DELETE
 
 ### Nota
 
-**Os dados do plano de viagem não são persistidos**
+**Os dados dos planos de viagem criados não são persistidos**
 
 Não é realizado mapeamento de volume do container.
